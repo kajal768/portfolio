@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kajal • Selected Projects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Page specific styling -->
+  <style>
+    .page-shell {
+      min-height: 100vh;
+      padding: 6rem 7vw 3rem;
+      background: radial-gradient(circle at top, #050816 0%, #02010b 40%, #020617 100%);
+      color: #e5e7eb;
+    }
+
+    .projects-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.3fr);
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    @media (max-width: 900px) {
+      .projects-hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .section-heading {
+      font-size: clamp(2.1rem, 3vw, 2.6rem);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #f9fafb;
+    }
+
+    .section-sub {
+      font-size: 0.98rem;
+      max-width: 25rem;
+      color: #9ca3af;
+      line-height: 1.6;
+    }
+
+    .projects-meta-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.4rem;
+    }
+
+    .projects-meta-badges span {
+      font-size: 0.78rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: #cbd5f5;
+      background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), rgba(15, 23, 42, 0.85));
+      backdrop-filter: blur(10px);
+    }
+
+    /* ========= HERO SIDE CARD ========= */
+    .projects-aside-card {
+      border-radius: 1.5rem;
+      padding: 1rem 1.6rem;
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.22), rgba(15, 23, 42, 0.96));
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      margin-right: 1.5cm;
+      width: 520px;
+      max-width: 100%;
+      transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        border-color 0.28s ease,
+        background 0.28s ease;
+    }
+
+    .projects-aside-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at top right, rgba(244, 63, 94, 0.4), transparent 60%);
+      opacity: 0.6;
+      mix-blend-mode: screen;
+      pointer-events: none;   /* ✅ overlay clicks block na kare */
+      z-index: 0;
+    }
+
+    /* card ke andar sab content ko upar rakhna */
+    .projects-aside-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .projects-aside-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.95);
+      border-color: rgba(244, 244, 245, 0.9);
+      background: radial-gradient(circle at top, rgba(59, 130, 246, 0.24), rgba(15, 23, 42, 0.98));
+    }
+
+    .projects-aside-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+      opacity: 0.8;
+    }
+
+    .projects-aside-title {
+      margin-top: 0.6rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fefce8;
+    }
+
+    .projects-aside-text {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #e5e7eb;
+      opacity: 0.9;
+    }
+
+    .projects-pill-row {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .projects-pill {
+      display: inline-flex;           /* ✅ anchor proper clickable chip */
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      padding: 0.28rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: #e5e7eb;
+      text-decoration: none;
+      cursor: pointer;
+      transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    .projects-pill:hover {
+      background: rgba(59, 130, 246, 0.28);
+      border-color: rgba(191, 219, 254, 0.95);
+      transform: translateY(-1px);
+      box-shadow: 0 0 16px rgba(59, 130, 246, 0.6);
+    }
+
+    .projects-note {
+      margin-top: 1.2rem;
+      font-size: 0.8rem;
+      color: #cbd5f5;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0.9;
+    }
+
+    .projects-note-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .projects-aside-card:hover .projects-note-dot {
+      transform: scale(1.1);
+      box-shadow: 0 0 18px rgba(34, 197, 94, 1);
+    }
+
+    /* ========= RIGHT SIDE WRAPPER + IMAGE ========= */
+    .projects-hero-right {
+      position: relative;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .projects-hero-image {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 230px;
+      height: 430px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .projects-hero-image img {
+      position: relative;
+      height: 92%;
+      object-fit: contain;
+      transform: translateY(6px);
+      margin-left: 5.5cm;
+    }
+
+    @media (max-width: 1100px) {
+      .projects-hero-image {
+        right: -80px;
+      }
+
+      .projects-aside-card {
+        margin-right: 0;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .projects-hero-right {
+        justify-content: flex-start;
+      }
+
+      .projects-hero-image {
+        position: static;
+        transform: none;
+        margin-top: 1.4rem;
+        width: 210px;
+        height: 210px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .projects-hero-image {
+        display: none;
+      }
+    }
+
+    /* ========= PROJECT CARDS ========= */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.9rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .project-card {
+      position: relative;
+      padding: 1.4rem 1.3rem 1.2rem;
+      border-radius: 1.35rem;
+      background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.2), rgba(15, 23, 42, 0.96));
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.75);
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      transform-origin: center;
+      transform: translateY(0) scale(1);
+      transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        border-color 0.28s ease,
+        background 0.28s ease;
+      cursor: default;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.16), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 20px 55px rgba(15, 23, 42, 0.9);
+      border-color: rgba(244, 244, 245, 0.9);
+      background: radial-gradient(circle at top, rgba(59, 130, 246, 0.24), rgba(15, 23, 42, 0.98));
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-title {
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .project-tag {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #bfdbfe;
+      opacity: 0.9;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: #e5e7eb;
+      opacity: 0.9;
+      line-height: 1.6;
+      margin-top: 0.1rem;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: #cbd5f5;
+      flex-wrap: wrap;
+    }
+
+    .project-tech {
+      opacity: 0.9;
+    }
+
+    .project-meta span:last-child {
+      opacity: 0.8;
+      font-style: italic;
+    }
+
+    .project-cta-row {
+      margin-top: 0.7rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+    }
+
+    .project-link-pill {
+      padding: 0.38rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(191, 219, 254, 0.9);
+      background: rgba(15, 23, 42, 0.7);
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      user-select: none;
+    }
+
+    .project-link-pill span {
+      font-size: 0.75rem;
+    }
+
+    .project-link-pill i {
+      font-style: normal;
+      font-size: 0.9rem;
+      transform: translateX(0);
+      transition: transform 0.25s ease;
+    }
+
+    .project-card.has-link {
+      cursor: pointer;
+    }
+
+    .project-card.has-link:hover .project-link-pill {
+      background: rgba(59, 130, 246, 0.2);
+      transform: translateY(-1px);
+      box-shadow: 0 0 18px rgba(59, 130, 246, 0.7);
+    }
+
+    .project-card.has-link:hover .project-link-pill i {
+      transform: translateX(2px);
+    }
+
+    .project-type-chip {
+      font-size: 0.75rem;
+      padding: 0.24rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      color: #e5e7eb;
+    }
+
+    footer {
+      border-top: 1px solid rgba(55, 65, 81, 0.8);
+      margin-top: 1.5rem;
+      padding-top: 1.2rem;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER PLACEHOLDER (header.html yahan load hoga) -->
+  <div id="site-header"></div>
+
+  <main class="page-shell">
+    <!-- Hero / Intro -->
+    <section class="projects-hero">
+      <div>
+        <h2 class="section-heading">Selected Projects</h2>
+        <p class="section-sub" id="projectsSub">
+          <!-- JS se dynamic text aa jayega -->
+        </p>
+
+        <div class="projects-meta-badges">
+          <span id="projectsCountBadge">0 Projects</span>
+          <span>Real-world inspired • Practical</span>
+          <span>HTML • CSS • JS • PHP • SQL • Laravel • CodeIgniter</span>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE: CARD + IMAGE -->
+      <div class="projects-hero-right">
+        <aside class="projects-aside-card">
+          <div class="projects-aside-label">Project Types</div>
+          <div class="projects-aside-title">How I organize my work</div>
+          <p class="projects-aside-text">
+            This portfolio mixes office-style demos, college projects and
+            the latest things I'm currently learning and exploring in web development.
+          </p>
+
+          <!-- ✅ Clickable pills -->
+          <div class="projects-pill-row">
+            <a href="office-projects.html"   class="projects-pill">Office-style Demo Projects</a>
+            <a href="college-projects.html"  class="projects-pill">College Minor & Major</a>
+            <a href="practice-projects.html" class="projects-pill">Practice & Learning Builds</a>
+          </div>
+
+          <div class="projects-note">
+            <span class="projects-note-dot"></span>
+            <span>Client code or confidential data is never used. All demos are rebuilt by me.</span>
+          </div>
+        </aside>
+
+        <!-- glowing circle + image -->
+        <div class="projects-hero-image">
+          <img src="images/projects-hero.png" alt="Kajal working on web projects">
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section>
+      <div class="projects-grid" id="projectsGrid"></div>
+    </section>
+  </main>
+
+  <!-- FOOTER PLACEHOLDER (footer.html yahan load hoga) -->
+  <div id="site-footer"></div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+
+  <script>
+    function initProjects() {
+      const d = window.portfolioData || {};
+      const projects = d.projects || [];
+
+      const sub = d.projectsSub ||
+        "A curated mix of office-style demos, college work and hands-on learning projects that show how I think, design and build.";
+
+      const subEl = document.getElementById("projectsSub");
+      if (subEl) subEl.textContent = sub;
+
+      const countBadge = document.getElementById("projectsCountBadge");
+      if (countBadge) {
+        countBadge.textContent =
+          projects.length === 1 ? "1 Project" : projects.length + " Projects";
+      }
+
+      const grid = document.getElementById("projectsGrid");
+      if (!grid) return;
+      grid.innerHTML = "";
+
+      projects.forEach((p) => {
+        const card = document.createElement("article");
+        card.className = "project-card";
+
+        const hasLink = p.url && p.url !== "#";
+
+        if (hasLink) {
+          card.classList.add("has-link");
+          card.addEventListener("click", () => {
+            window.open(p.url, "_blank");
+          });
+        }
+
+        const typeLabel = p.type || p.tag || "";
+
+        card.innerHTML = `
+          <div class="project-tag">${typeLabel}</div>
+          <div class="project-title">${p.title}</div>
+          <p class="project-desc">${p.desc}</p>
+
+          <div class="project-meta">
+            <span class="project-tech">${p.tech || ""}</span>
+            <span>${p.meta || ""}</span>
+          </div>
+
+          <div class="project-cta-row">
+            ${
+              hasLink
+                ? `<div class="project-link-pill">
+                     <span>View Live</span>
+                     <i>↗</i>
+                   </div>`
+                : `<span class="project-type-chip">
+                     ${typeLabel || "Concept Demo"}
+                   </span>`
+            }
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      initProjects();
+    });
+  </script>
+</body>
+</html>

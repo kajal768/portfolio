@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kajal • Certificates & Achievements</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <!-- ✅ Page-only CSS (Modern Resume Section + Modal) -->
+  <style>
+    .resume-section{ margin-top: 34px; }
+
+    .resume-pro{
+      border-radius: 18px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 12px 50px rgba(0,0,0,.35);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .resume-pro::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(600px 260px at 10% 10%, rgba(78,161,255,.22), transparent 60%),
+        radial-gradient(520px 240px at 90% 30%, rgba(34,197,94,.14), transparent 60%),
+        radial-gradient(520px 260px at 50% 110%, rgba(168,85,247,.12), transparent 60%);
+      opacity:.85;
+      pointer-events:none;
+    }
+
+    .resume-pro-inner{
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      padding: 18px;
+      align-items: stretch;
+    }
+
+    .resume-left{
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      backdrop-filter: blur(10px);
+    }
+
+    .resume-title-row{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .resume-title{
+      margin:0;
+      font-size: 20px;
+      letter-spacing: .2px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+
+    .resume-badge{
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(78,161,255,.12);
+      border: 1px solid rgba(78,161,255,.22);
+      color: rgba(255,255,255,.86);
+      white-space: nowrap;
+    }
+
+    .resume-sub{
+      margin: 0;
+      opacity: .82;
+      line-height: 1.7;
+      font-size: 14px;
+      max-width: 720px;
+    }
+
+    .resume-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .rbtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      text-decoration:none;
+      transition: .2s ease;
+      font-weight: 700;
+      font-size: 13.5px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .rbtn:hover{ background: rgba(255,255,255,.09); transform: translateY(-1px); }
+
+    .rbtn.primary{
+      background: rgba(78,161,255,.20);
+      border: 1px solid rgba(78,161,255,.28);
+    }
+    .rbtn.primary:hover{ background: rgba(78,161,255,.26); }
+
+    .resume-right{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+      display:flex;
+      flex-direction: column;
+    }
+
+    .resume-preview-top{
+      padding: 12px 12px 10px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+
+    .preview-label{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 13px;
+      opacity: .9;
+    }
+
+    .preview-mini-actions{
+      display:flex;
+      gap: 8px;
+      align-items:center;
+      flex-wrap: wrap;
+    }
+
+    .mini{
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.86);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:.2s ease;
+      text-decoration: none;
+    }
+    .mini:hover{ background: rgba(255,255,255,.09); transform: translateY(-1px); }
+
+    .resume-thumb{
+      flex: 1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px;
+      min-height: 260px;
+    }
+
+    .resume-thumb-box{
+      width: 100%;
+      height: 100%;
+      border-radius: 14px;
+      border: 1px dashed rgba(255,255,255,.20);
+      background: rgba(255,255,255,.04);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding: 18px;
+      line-height: 1.6;
+      opacity: .9;
+    }
+
+    .resume-thumb-box strong{
+      display:block;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .resume-pro-inner{ grid-template-columns: 1fr; }
+      .resume-thumb{ min-height: 220px; }
+    }
+
+    /* ✅ Modal */
+    .rmodal{
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 9999;
+      background: rgba(0,0,0,.60);
+      backdrop-filter: blur(6px);
+    }
+    .rmodal.show{ display:flex; }
+
+    .rmodal-card{
+      width: min(980px, 100%);
+      height: min(82vh, 720px);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(10, 14, 25, .92);
+      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+      overflow: hidden;
+      display:flex;
+      flex-direction: column;
+      transform: translateY(10px);
+      animation: rPop .18s ease-out forwards;
+    }
+    @keyframes rPop { to{ transform: translateY(0); } }
+
+    .rmodal-bar{
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .rmodal-title{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: .2px;
+      opacity: .92;
+    }
+
+    .rmodal-actions{
+      display:flex;
+      gap: 8px;
+      align-items:center;
+      flex-wrap: wrap;
+    }
+
+    .rclose{
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.86);
+      cursor: pointer;
+      transition: .2s ease;
+    }
+    .rclose:hover{ background: rgba(255,255,255,.09); transform: translateY(-1px); }
+
+    .rmodal-body{
+      flex: 1;
+      background: rgba(255,255,255,.03);
+    }
+    .rframe{
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="site-header"></div>
+
+  <main class="page-shell">
+    <section class="certs-section">
+      <div class="certs-header">
+        <h2 class="section-heading">Certificates & Achievements</h2>
+        <p class="section-sub" id="certsSub">
+          Some of the certifications and achievements that support my web development journey.
+        </p>
+      </div>
+
+      <div class="certs-grid">
+        <!-- 1st certificate -->
+        <article class="cert-card">
+          <div class="cert-thumb-wrap" data-cert="1">
+            <img src="images/cert1-html.jpg" alt="HTML Web Development Certificate" class="cert-thumb-img" />
+          </div>
+
+          <div class="cert-text">
+            <h3 class="cert-title">HTML Web Development Certificate</h3>
+            <p class="cert-summary">
+              Completed HTML web development and shared my learning journey on LinkedIn,
+              covering structure, tags, forms and responsive basics.
+            </p>
+          </div>
+
+          <div class="cert-footer">
+            <a class="cert-link"
+              href="https://www.linkedin.com/posts/kajal-rajput-43abb62a8_html-webdevelopment-learningjourney-activity-7352191743993241600-Fq-_?utm_source=social_share_send&utm_medium=android_app&rcm=ACoAAEo3ae4BJOf75MCD1r3KcTUq-Vl4H8wYU6E&utm_campaign=whatsapp"
+              target="_blank" rel="noopener noreferrer">
+              View on LinkedIn
+            </a>
+          </div>
+        </article>
+
+        <!-- 2nd certificate -->
+        <article class="cert-card">
+          <div class="cert-thumb-wrap" data-cert="2">
+            <img src="images/cert2-iit-caseforge.jpg" alt="IIT Kharagpur – CaseForge 2025 Certificate" class="cert-thumb-img" />
+          </div>
+
+          <div class="cert-text">
+            <h3 class="cert-title">IIT Kharagpur – CaseForge 2025</h3>
+            <p class="cert-summary">
+              Participated in CaseForge 2025 organised by IIT Kharagpur &amp; Unstop,
+              working on problem solving, analysis and presentation skills.
+            </p>
+          </div>
+
+          <div class="cert-footer">
+            <a class="cert-link"
+              href="https://www.linkedin.com/posts/kajal-rajput-43abb62a8_iitkharagpur-caseforge2025-unstop-activity-7380932931843887104-rFNE?utm_source=social_share_send&utm_medium=android_app&rcm=ACoAAEo3ae4BJOf75MCD1r3KcTUq-Vl4H8wYU6E&utm_campaign=whatsapp"
+              target="_blank" rel="noopener noreferrer">
+              View on LinkedIn
+            </a>
+          </div>
+        </article>
+
+        <!-- 3rd certificate -->
+        <article class="cert-card">
+          <div class="cert-thumb-wrap" data-cert="3">
+            <img src="images/cert3-internship-novem.jpg" alt="Novem Controls Industrial Internship Certificate" class="cert-thumb-img" />
+          </div>
+
+          <div class="cert-text">
+            <h3 class="cert-title">45 Days Industrial Training – C++ Internship</h3>
+            <p class="cert-summary">
+              Successfully completed a 45 days industrial internship in C++ at Novem Controls
+              (June–July 2024), working on real-time tasks and gaining practical development
+              experience.
+            </p>
+          </div>
+
+          <div class="cert-footer">
+            <a class="cert-link"
+              href="https://www.linkedin.com/posts/kajal-rajput-43abb62a8_im-happy-to-share-that-ive-obtained-a-new-activity-7340979758345723905-ZhxR?utm_source=social_share_send&utm_medium=android_app&rcm=ACoAAEo3ae4BJOf75MCD1r3KcTUq-Vl4H8wYU6E&utm_campaign=whatsapp"
+              target="_blank" rel="noopener noreferrer">
+              View on LinkedIn
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <!-- ✅ MODERN RESUME SECTION -->
+      <section class="resume-section">
+        <div class="resume-pro">
+          <div class="resume-pro-inner">
+
+            <!-- Left: Content -->
+            <div class="resume-left">
+              <div class="resume-title-row">
+                <h3 class="resume-title">
+                  <i class="fa-solid fa-file-lines"></i> Resume
+                </h3>
+                <span class="resume-badge">PDF • Updated</span>
+              </div>
+
+              <p class="resume-sub">
+                Want to know more about my projects, skills and experience?
+                You can preview my resume instantly (without page reload) or download it in one click.
+              </p>
+
+              <div class="resume-actions">
+                <!-- ✅ View Resume (Modal open, no reload) -->
+                <button class="rbtn primary" type="button" id="viewResumeBtn">
+                  <i class="fa-solid fa-eye"></i> View Resume
+                </button>
+
+                <!-- ✅ Download Resume -->
+                <a class="rbtn" href="images/resume.pdf" download>
+                  <i class="fa-solid fa-download"></i> Download
+                </a>
+              </div>
+            </div>
+
+            <!-- Right: Preview card -->
+            <div class="resume-right">
+              <div class="resume-preview-top">
+                <div class="preview-label">
+                  <i class="fa-solid fa-magnifying-glass"></i> Quick Preview
+                </div>
+
+                <div class="preview-mini-actions">
+                  <!-- view -->
+                  <button class="mini" type="button" id="miniViewBtn" title="View Resume">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+                  <!-- open new tab -->
+                  <a class="mini" href="images/resume.pdf" target="_blank" rel="noopener" title="Open in new tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </a>
+                </div>
+              </div>
+
+              <div class="resume-thumb">
+                <div class="resume-thumb-box">
+                  <div>
+                    <strong>Resume Preview</strong>
+                    Click <b>View Resume</b> to open the PDF in a popup (no page reload).<br/>
+                    Or use <b>Download</b> to save it.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <!-- ✅ RESUME MODAL (Popup PDF Viewer) -->
+  <div class="rmodal" id="resumeModal" aria-hidden="true">
+    <div class="rmodal-card" role="dialog" aria-modal="true" aria-label="Resume Viewer">
+      <div class="rmodal-bar">
+        <div class="rmodal-title">
+          <i class="fa-solid fa-file-pdf"></i> Kajal Resume
+        </div>
+
+        <div class="rmodal-actions">
+          <a class="mini" href="images/resume.pdf" download title="Download">
+            <i class="fa-solid fa-download"></i>
+          </a>
+          <a class="mini" href="images/resume.pdf" target="_blank" rel="noopener" title="Open in new tab">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+          <button class="rclose" id="closeResumeModal" type="button" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="rmodal-body">
+        <iframe class="rframe" src="images/resume.pdf" title="Resume PDF"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+
+  <script>
+    function initCertificatesPage() {
+      const d = window.portfolioData || {};
+      if (d.certificatesSub) {
+        const subEl = document.getElementById("certsSub");
+        if (subEl) subEl.textContent = d.certificatesSub;
+      }
+
+      // Small zoom / popup effect on image click
+      document.querySelectorAll(".cert-thumb-wrap").forEach((wrap) => {
+        wrap.addEventListener("click", function () {
+          this.classList.toggle("cert-thumb-expanded");
+        });
+      });
+    }
+    document.addEventListener("DOMContentLoaded", initCertificatesPage);
+
+    // ✅ Resume modal logic (no reload)
+    const resumeModal = document.getElementById("resumeModal");
+    const openBtns = [document.getElementById("viewResumeBtn"), document.getElementById("miniViewBtn")];
+    const closeBtn = document.getElementById("closeResumeModal");
+
+    function openResumeModal(){
+      resumeModal.classList.add("show");
+      resumeModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeResumeModal(){
+      resumeModal.classList.remove("show");
+      resumeModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    openBtns.forEach(btn => btn && btn.addEventListener("click", openResumeModal));
+    closeBtn.addEventListener("click", closeResumeModal);
+
+    // click outside to close
+    resumeModal.addEventListener("click", (e) => {
+      if (e.target === resumeModal) closeResumeModal();
+    });
+
+    // ESC to close
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && resumeModal.classList.contains("show")) {
+        closeResumeModal();
+      }
+    });
+  </script>
+</body>
+</html>

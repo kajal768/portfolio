@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experience | Kajal Web Developer</title>
+
+  <!-- Main site CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    :root{
+      --bg1:#050814;
+      --bg2:#070b1c;
+      --glass: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --chip: rgba(255,255,255,.07);
+      --chipBorder: rgba(255,255,255,.14);
+      --primary: #4ea1ff;
+      --primary2:#22c55e;
+      --shadow: 0 18px 70px rgba(0,0,0,.45);
+    }
+
+    body{
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(78,161,255,.14), transparent 60%),
+        radial-gradient(900px 500px at 85% 25%, rgba(34,197,94,.12), transparent 60%),
+        radial-gradient(900px 500px at 50% 95%, rgba(168,85,247,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      color: var(--text);
+    }
+
+    .page-shell{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 34px 16px 70px;
+    }
+
+    /* HERO */
+    .hero-wrap{
+      min-height: 420px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding-top: 54px;
+      padding-bottom: 34px;
+      position: relative;
+      overflow:hidden;
+    }
+
+    .hero-card{
+      width: min(980px, 100%);
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 26px 22px;
+      backdrop-filter: blur(10px);
+      text-align:center;
+      position: relative;
+    }
+
+    .hero-card:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius: 22px;
+      background: radial-gradient(600px 200px at 30% 10%, rgba(78,161,255,.20), transparent 60%),
+                  radial-gradient(500px 200px at 80% 30%, rgba(34,197,94,.16), transparent 55%);
+      filter: blur(14px);
+      opacity: .55;
+      z-index:-1;
+    }
+
+    .hero-pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(78,161,255,.10);
+      border: 1px solid rgba(78,161,255,.18);
+      color: rgba(255,255,255,.86);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .hero-pill .dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 0 4px rgba(78,161,255,.14);
+    }
+
+    .hero-title{
+      margin: 0 0 10px;
+      font-size: clamp(32px, 4vw, 46px);
+      line-height: 1.12;
+      letter-spacing: .2px;
+      text-shadow: 0 10px 40px rgba(0,0,0,.35);
+    }
+
+    .hero-sub{
+      margin: 0 auto 16px;
+      max-width: 840px;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 15.5px;
+    }
+
+    .chip-row{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content:center;
+      margin-top: 10px;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--chip);
+      border: 1px solid var(--chipBorder);
+      color: rgba(255,255,255,.82);
+      font-size: 12.5px;
+      white-space: nowrap;
+    }
+
+    /* LAYOUT */
+    .exp-layout{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+      margin-top: 6px;
+    }
+    @media (max-width: 980px){
+      .exp-layout{ grid-template-columns: 1fr; }
+    }
+
+    /* TIMELINE WRAP */
+    .timeline{
+      border-radius: 18px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 12px 50px rgba(0,0,0,.35);
+      padding: 16px;
+      overflow:hidden;
+      position: relative;
+    }
+
+    .timeline-head{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .timeline-title{
+      margin:0;
+      font-size: 18px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+
+    .small-badge{
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(34,197,94,.10);
+      border: 1px solid rgba(34,197,94,.22);
+      color: rgba(255,255,255,.86);
+      white-space: nowrap;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+    }
+
+    .timeline-list{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      position: relative;
+    }
+
+    .timeline-list::before{
+      content:"";
+      position:absolute;
+      top: 6px;
+      bottom: 6px;
+      left: 10px;
+      width: 2px;
+      background: rgba(255,255,255,.12);
+    }
+
+    .t-item{
+      position: relative;
+      padding-left: 34px;
+      padding-bottom: 16px;
+      margin-top: 12px;
+    }
+    .t-item:last-child{ padding-bottom: 4px; }
+
+    .t-dot{
+      position:absolute;
+      left: 3px;
+      top: 10px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(78,161,255,.20);
+      border: 1px solid rgba(78,161,255,.40);
+      box-shadow: 0 0 0 4px rgba(78,161,255,.10);
+    }
+
+    .t-card{
+      border-radius: 16px;
+      background: rgba(0,0,0,.14);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 14px 14px;
+    }
+
+    .t-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .t-role{
+      margin:0;
+      font-size: 16px;
+      line-height: 1.35;
+    }
+
+    .t-company{
+      opacity:.9;
+      font-size: 13.5px;
+      margin-top: 4px;
+      color: rgba(255,255,255,.78);
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .t-time{
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(78,161,255,.10);
+      border: 1px solid rgba(78,161,255,.18);
+      color: rgba(255,255,255,.84);
+      white-space: nowrap;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+    }
+
+    .t-desc{
+      margin: 0;
+      color: rgba(255,255,255,.72);
+      line-height: 1.75;
+      font-size: 13.8px;
+    }
+
+    .t-points{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: rgba(255,255,255,.72);
+      line-height: 1.75;
+      font-size: 13.8px;
+    }
+
+    .t-tech{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tech-badge{
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.82);
+      font-size: 12px;
+    }
+
+    .btn-row{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      text-decoration:none;
+      transition: .2s ease;
+      font-weight: 800;
+      font-size: 13.5px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{ background: rgba(255,255,255,.09); transform: translateY(-1px); }
+
+    .btn-primary{
+      background: rgba(78,161,255,.18);
+      border: 1px solid rgba(78,161,255,.26);
+    }
+    .btn-primary:hover{ background: rgba(78,161,255,.24); }
+
+    .btn-ghost{
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.12);
+      font-weight: 700;
+    }
+
+    /* SIDE CARDS */
+    .side-stack{
+      display:flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .side-card{
+      border-radius: 18px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 12px 50px rgba(0,0,0,.35);
+      padding: 16px;
+    }
+
+    .side-card h3{
+      margin:0 0 10px;
+      font-size: 16px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+
+    .side-card p{
+      margin:0;
+      color: rgba(255,255,255,.72);
+      line-height: 1.75;
+      font-size: 13.8px;
+    }
+
+    .pill-list{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .pill{
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(78,161,255,.10);
+      border: 1px solid rgba(78,161,255,.16);
+      color: rgba(255,255,255,.84);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    /* Reveal */
+    .reveal{
+      opacity: 0;
+      transform: translateY(10px);
+      transition: .45s ease;
+    }
+    .reveal.show{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ✅ MODAL (Modern Image Viewer) */
+    .k-modal{
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 9999;
+      background: rgba(0,0,0,.62);
+      backdrop-filter: blur(10px);
+    }
+    .k-modal.show{ display:flex; }
+
+    .k-modal-card{
+      width: min(1020px, 100%);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(10, 14, 25, .94);
+      box-shadow: 0 18px 70px rgba(0,0,0,.55);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .k-modal-top{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+
+    .k-modal-title{
+      margin:0;
+      font-size: 13px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.82);
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .k-modal-actions{
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    .k-icbtn{
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.9);
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      transition: .2s ease;
+    }
+    .k-icbtn:hover{ background: rgba(255,255,255,.10); transform: translateY(-1px); }
+
+    .k-modal-body{
+      padding: 14px;
+      background: rgba(0,0,0,.10);
+    }
+
+    .k-img-wrap{
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      overflow: hidden;
+      background: rgba(0,0,0,.25);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height: 240px;
+      max-height: 72vh;            /* ✅ main fix */
+      position: relative;
+    }
+
+    .k-loading{
+      position:absolute;
+      inset: 0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 13px;
+      color: rgba(255,255,255,.70);
+      letter-spacing: .06em;
+      background: radial-gradient(600px 220px at 30% 20%, rgba(78,161,255,.10), transparent 60%);
+      pointer-events:none;
+      opacity: 0;
+      transition: .25s ease;
+    }
+    .k-loading.show{ opacity: 1; }
+
+    /* ✅ image display fixed: contain + zoom support */
+    .k-img{
+      max-width: 100%;
+      max-height: 72vh;
+      width: auto;
+      height: auto;
+      display:block;
+      transform: scale(1);
+      transform-origin: center;
+      transition: transform .18s ease;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .k-hint{
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,.62);
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+      justify-content: space-between;
+    }
+
+    .k-hint code{
+      padding: 4px 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.75);
+    }
+
+    @media (max-width: 640px){
+      .hero-wrap{ padding-top: 34px; }
+      .k-modal-body{ padding: 10px; }
+      .k-modal-top{ padding: 10px 10px; }
+      .k-icbtn{ width: 38px; height: 38px; border-radius: 11px; }
+      .k-img-wrap{ max-height: 68vh; }
+      .k-img{ max-height: 68vh; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="site-header"></div>
+
+  <main class="page-shell">
+
+    <!-- ✅ HERO -->
+    <section class="hero-wrap">
+      <div class="hero-card reveal">
+        <div class="hero-pill">
+          <span class="dot"></span>
+          <span>SECTION • EXPERIENCE</span>
+        </div>
+
+        <h1 class="hero-title">Experience</h1>
+        <p class="hero-sub">
+          Real-world work experience where I focused mainly on <b>backend development</b> — building
+          APIs, managing databases, handling validations, and creating smooth admin-side workflows.
+          (Same premium portfolio theme, but content is now backend-impressive.)
+        </p>
+
+        <div class="chip-row">
+          <span class="chip"><i class="fa-solid fa-server"></i> Backend Development</span>
+          <span class="chip"><i class="fa-solid fa-shield-halved"></i> Validation & Security</span>
+          <span class="chip"><i class="fa-solid fa-database"></i> MySQL / Queries</span>
+          <span class="chip"><i class="fa-solid fa-code-branch"></i> Clean MVC Structure</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ CONTENT -->
+    <section class="exp-layout">
+
+      <!-- ✅ Timeline -->
+      <div class="timeline reveal">
+        <div class="timeline-head">
+          <h2 class="timeline-title"><i class="fa-solid fa-timeline"></i> Work Timeline</h2>
+          <span class="small-badge"><i class="fa-solid fa-badge-check"></i> Verified</span>
+        </div>
+
+        <ul class="timeline-list" id="timelineList">
+
+          <!-- ✅ REAL EXPERIENCE -->
+          <li class="t-item">
+            <span class="t-dot"></span>
+            <div class="t-card">
+              <div class="t-top">
+                <div>
+                  <h3 class="t-role">Assistant Web Developer (Backend-Focused)</h3>
+                  <div class="t-company">
+                    <i class="fa-solid fa-building"></i>
+                    MakeStudy (Deepak Enterprises) • India
+                  </div>
+                </div>
+                <span class="t-time"><i class="fa-solid fa-calendar"></i> Current</span>
+              </div>
+
+              <p class="t-desc">
+                Working mainly on backend tasks like database handling, form processing, validations,
+                and feature integration. I focus on clean code, reusable structure and reliable flow from UI → server → database.
+              </p>
+
+              <ul class="t-points">
+                <li>Built and maintained backend logic for form submissions (server-side validation + error handling)</li>
+                <li>Worked with MySQL: designing tables, writing queries, optimizing data fetch and updates</li>
+                <li>Created admin-side workflows like list pages, filters, and detail views with clean structure</li>
+                <li>Handled secure input processing, required fields checks, and smoother user experience</li>
+                <li>Collaborated on UI where needed, but majority contribution stayed backend + logic</li>
+              </ul>
+
+              <div class="t-tech">
+                <span class="tech-badge">PHP</span>
+                <span class="tech-badge">MySQL</span>
+                <span class="tech-badge">MVC</span>
+                <span class="tech-badge">CodeIgniter</span>
+                <span class="tech-badge">Validation</span>
+              </div>
+
+              <div class="btn-row">
+                <!-- ✅ View image in modern popup -->
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  data-modal-title="MakeStudy — Offer Letter / Work Proof"
+                  data-img-src="images/makestudy.jpeg"
+                >
+                  <i class="fa-regular fa-image"></i> View Proof
+                </button>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+
+      <!-- ✅ Side -->
+      <aside class="side-stack">
+
+        <div class="side-card reveal">
+          <h3><i class="fa-solid fa-bolt"></i> Strengths</h3>
+          <p>
+            Strong backend mindset: clean database work, validations, stable features, and structured code.
+            I enjoy building logic that makes applications reliable and easy to scale.
+          </p>
+
+          <div class="pill-list">
+            <span class="pill">Backend Logic</span>
+            <span class="pill">Database</span>
+            <span class="pill">Validations</span>
+            <span class="pill">Clean MVC</span>
+          </div>
+        </div>
+
+        <div class="side-card reveal">
+          <h3><i class="fa-solid fa-rocket"></i> Next Goals</h3>
+          <p>
+            Deepen backend skills with advanced queries, security best practices, and API-based features.
+            Step-by-step moving toward full-stack, but backend remains my strongest side.
+          </p>
+
+          <div class="btn-row">
+            <a class="btn btn-primary" href="practice-projects.html">
+              <i class="fa-solid fa-diagram-project"></i> Practice Builds
+            </a>
+            <a class="btn btn-ghost" href="contact.html">
+              <i class="fa-solid fa-paper-plane"></i> Contact
+            </a>
+          </div>
+        </div>
+
+      </aside>
+    </section>
+
+  </main>
+
+  <div id="site-footer"></div>
+
+  <!-- ✅ Modern Modal -->
+  <div class="k-modal" id="kModal" aria-hidden="true">
+    <div class="k-modal-card" role="dialog" aria-modal="true" aria-labelledby="kModalTitle">
+      <div class="k-modal-top">
+        <h3 class="k-modal-title" id="kModalTitle">
+          <i class="fa-regular fa-image"></i> Preview
+        </h3>
+
+        <div class="k-modal-actions">
+          <button class="k-icbtn" id="kZoomOut" type="button" aria-label="Zoom Out" title="Zoom Out">
+            <i class="fa-solid fa-magnifying-glass-minus"></i>
+          </button>
+          <button class="k-icbtn" id="kZoomIn" type="button" aria-label="Zoom In" title="Zoom In">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+          </button>
+          <button class="k-icbtn" id="kReset" type="button" aria-label="Reset Zoom" title="Reset">
+            <i class="fa-solid fa-arrows-rotate"></i>
+          </button>
+          <a class="k-icbtn" id="kNewTab" href="#" target="_blank" aria-label="Open in New Tab" title="Open in New Tab">
+            <i class="fa-solid fa-up-right-from-square"></i>
+          </a>
+          <button class="k-icbtn" id="kClose" type="button" aria-label="Close" title="Close (Esc)">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="k-modal-body">
+        <div class="k-img-wrap">
+          <div class="k-loading" id="kLoading">Loading preview…</div>
+          <img id="kImg" class="k-img" src="" alt="Preview image" />
+        </div>
+
+        <div class="k-hint">
+          <span><i class="fa-regular fa-keyboard"></i> Tip: Press <code>Esc</code> to close</span>
+          <span><i class="fa-solid fa-magnifying-glass"></i> Zoom with buttons (Reset anytime)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+
+  <script>
+    // Reveal animation
+    function revealOnLoad(){
+      document.querySelectorAll(".reveal").forEach((el, i) => {
+        setTimeout(() => el.classList.add("show"), 80 + i * 90);
+      });
+    }
+
+    // Modal logic (modern + fixed image display)
+    const modal = document.getElementById("kModal");
+    const kClose = document.getElementById("kClose");
+    const kImg = document.getElementById("kImg");
+    const kTitle = document.getElementById("kModalTitle");
+    const kLoading = document.getElementById("kLoading");
+
+    const kZoomIn = document.getElementById("kZoomIn");
+    const kZoomOut = document.getElementById("kZoomOut");
+    const kReset = document.getElementById("kReset");
+    const kNewTab = document.getElementById("kNewTab");
+
+    let zoom = 1;
+
+    function applyZoom(){
+      // keep zoom in reasonable range
+      zoom = Math.max(1, Math.min(3, zoom));
+      kImg.style.transform = `scale(${zoom})`;
+    }
+
+    function openModal(title, imgSrc){
+      zoom = 1;
+      applyZoom();
+
+      kTitle.innerHTML = '<i class="fa-regular fa-image"></i> ' + (title || "Preview");
+      kNewTab.href = imgSrc || "#";
+
+      kLoading.classList.add("show");
+      kImg.style.opacity = "0";
+      kImg.src = imgSrc;
+
+      modal.classList.add("show");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal(){
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+
+      kImg.src = "";
+      kImg.style.transform = "scale(1)";
+      kLoading.classList.remove("show");
+    }
+
+    // image load handler
+    kImg.addEventListener("load", () => {
+      kLoading.classList.remove("show");
+      kImg.style.opacity = "1";
+    });
+
+    // buttons
+    kClose.addEventListener("click", closeModal);
+    kZoomIn.addEventListener("click", () => { zoom += 0.2; applyZoom(); });
+    kZoomOut.addEventListener("click", () => { zoom -= 0.2; applyZoom(); });
+    kReset.addEventListener("click", () => { zoom = 1; applyZoom(); });
+
+    // close on backdrop click
+    modal.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
+
+    // Esc close
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && modal.classList.contains("show")) closeModal();
+    });
+
+    // Attach to buttons
+    document.querySelectorAll("[data-img-src]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        openModal(btn.getAttribute("data-modal-title"), btn.getAttribute("data-img-src"));
+      });
+    });
+
+    document.addEventListener("DOMContentLoaded", revealOnLoad);
+  </script>
+</body>
+</html>

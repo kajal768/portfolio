@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>College Minor & Major Projects | Kajal Web Developer</title>
+
+  <!-- Your main site CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    :root{
+      --bg1:#050814;
+      --bg2:#070b1c;
+      --glass: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --chip: rgba(255,255,255,.07);
+      --chipBorder: rgba(255,255,255,.14);
+      --primary: #4ea1ff;
+      --shadow: 0 18px 70px rgba(0,0,0,.45);
+    }
+
+    body{
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(78,161,255,.14), transparent 60%),
+        radial-gradient(900px 500px at 80% 20%, rgba(34,197,94,.10), transparent 60%),
+        radial-gradient(900px 500px at 50% 90%, rgba(168,85,247,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      color: var(--text);
+    }
+
+    .page-shell{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 34px 16px 60px;
+    }
+
+    .hero-wrap{
+      min-height: 420px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding-top: 54px;
+      padding-bottom: 40px;
+      position: relative;
+      overflow:hidden;
+    }
+
+    .hero-card{
+      width: min(860px, 100%);
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 26px 22px;
+      backdrop-filter: blur(10px);
+      text-align:center;
+    }
+
+    .hero-pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(78,161,255,.10);
+      border: 1px solid rgba(78,161,255,.18);
+      color: rgba(255,255,255,.86);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .hero-pill .dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 0 4px rgba(78,161,255,.14);
+    }
+
+    .hero-title{
+      margin: 0 0 10px;
+      font-size: clamp(32px, 4vw, 44px);
+      line-height: 1.15;
+      letter-spacing: .2px;
+      text-shadow: 0 10px 40px rgba(0,0,0,.35);
+    }
+
+    .hero-sub{
+      margin: 0 auto 18px;
+      max-width: 720px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15.5px;
+    }
+
+    .chip-row{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content:center;
+      margin-top: 8px;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--chip);
+      border: 1px solid var(--chipBorder);
+      color: rgba(255,255,255,.82);
+      font-size: 12.5px;
+      white-space: nowrap;
+    }
+
+    /* ✅ FIX: 2 cards center */
+    .projects-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 420px)); /* 2 equal cards */
+      justify-content: center; /* ✅ centers the two cards */
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 980px){
+      .projects-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-content: stretch;
+      }
+    }
+    @media (max-width: 640px){
+      .projects-grid{ grid-template-columns: 1fr; }
+      .hero-wrap{ padding-top: 34px; }
+    }
+
+    .project-card{
+      border-radius: 18px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 12px 50px rgba(0,0,0,.35);
+      padding: 18px 16px;
+      min-height: 210px;
+      display:flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .proj-title{
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    .proj-type{
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.76);
+      white-space: nowrap;
+    }
+
+    .proj-desc{
+      margin: 0 0 12px;
+      color: rgba(255,255,255,.74);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .tech-row{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .tech-badge{
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(78,161,255,.10);
+      border: 1px solid rgba(78,161,255,.16);
+      color: rgba(255,255,255,.84);
+      font-size: 12px;
+    }
+
+    .btn-row{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      text-decoration:none;
+      transition: .2s ease;
+      font-weight: 600;
+      font-size: 13.5px;
+      cursor: pointer;
+    }
+
+    .btn:hover{ background: rgba(255,255,255,.09); transform: translateY(-1px); }
+
+    .btn-primary{
+      background: rgba(78,161,255,.18);
+      border: 1px solid rgba(78,161,255,.26);
+    }
+    .btn-primary:hover{ background: rgba(78,161,255,.24); }
+
+    .note-line{
+      margin-top: 18px;
+      color: rgba(255,255,255,.65);
+      font-size: 13.5px;
+      text-align:center;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="site-header"></div>
+
+  <main class="page-shell">
+    <section class="hero-wrap">
+      <div class="hero-card">
+        <div class="hero-pill">
+          <span class="dot"></span>
+          <span>PROJECT TYPE • COLLEGE</span>
+        </div>
+
+        <h1 class="hero-title">College Minor & Major Projects</h1>
+        <p class="hero-sub">
+          Academic projects built during college with proper documentation and practical use cases.
+          These include a major full-stack web platform and a minor CRUD-based system.
+        </p>
+
+        <div class="chip-row">
+          <span class="chip"><i class="fa-solid fa-shield-halved"></i> Role-based Login</span>
+          <span class="chip"><i class="fa-solid fa-database"></i> MySQL Database</span>
+          <span class="chip"><i class="fa-solid fa-chart-line"></i> Dashboards & Reports</span>
+          <span class="chip"><i class="fa-solid fa-laptop-code"></i> Responsive UI</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ Only 2 cards -->
+    <section class="projects-grid">
+
+      <!-- 1) Major Project -->
+      <article class="project-card">
+        <div>
+          <div class="card-top">
+            <h3 class="proj-title">Freelancing Platform (Major College Project)</h3>
+            <span class="proj-type">Major</span>
+          </div>
+
+          <p class="proj-desc">
+            Developed a job listing platform for clients and freelancers with role-based dashboards.
+            Includes job posting, applications, and secure database structure with MySQL.
+          </p>
+
+          <div class="tech-row">
+            <span class="tech-badge">HTML</span>
+            <span class="tech-badge">CSS</span>
+            <span class="tech-badge">JavaScript</span>
+            <span class="tech-badge">PHP</span>
+            <span class="tech-badge">MySQL</span>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <!-- ✅ ADD YOUR PROJECT LINK HERE (GitHub Repo or Live Demo) -->
+          <a class="btn btn-primary" href="#" target="_blank">
+            View Project <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </article>
+
+      <!-- 2) Minor Project -->
+      <article class="project-card">
+        <div>
+          <div class="card-top">
+            <h3 class="proj-title">Library Management System (Minor Project)</h3>
+            <span class="proj-type">Minor</span>
+          </div>
+
+          <p class="proj-desc">
+            Built a system to add, update, delete, and search books with an admin panel to manage records.
+            Focused on CRUD operations, validation, and clean UI structure.
+          </p>
+
+          <div class="tech-row">
+            <span class="tech-badge">HTML</span>
+            <span class="tech-badge">CSS</span>
+            <span class="tech-badge">PHP</span>
+            <span class="tech-badge">MySQL</span>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <!-- ✅ ADD YOUR PROJECT LINK HERE -->
+          <a class="btn btn-primary" href="#" target="_blank">
+            View Project <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

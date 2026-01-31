@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kajal • Web Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER PLACEHOLDER -->
+  <div id="site-header"></div>
+
+  <main id="top" class="page-shell">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-text-top" id="heroTopText"></div>
+
+        <div class="resume-shell">
+          <!-- 🔹 yahan "open" class add ki hui hai taaki card bada rahe -->
+          <div class="resume-card open" id="resumeCard">
+            <div class="circle-name" id="circleName"></div>
+            <div class="name-tagline" id="nameTagline"></div>
+
+            <div class="photo-wrap">
+             <img id="profilePhoto" src="images/kajal-photo.jpg" alt="Profile Photo" />
+            </div>
+
+            <div class="resume-inner">
+              <div class="details">
+                <div>
+                  <h2 id="heroHeading"></h2>
+                  <div class="role" id="heroRole"></div>
+                  <p class="about" id="heroAbout"></p>
+                </div>
+
+                <div>
+                  <div class="details-row">
+                    <div class="chip">
+                      <span class="chip-dot"></span>
+                      <span id="chipLocation"></span>
+                    </div>
+                    <div class="chip">
+                      <span class="chip-dot"></span>
+                      <span id="chipStatus"></span>
+                    </div>
+                  </div>
+
+                  <div class="skills-inline" id="heroSkillsInline"></div>
+
+                  <p class="hint-text">
+                    * Skills and experience get updated as I grow in web development.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="click-hint click-hint-open">
+              <span>⬤</span>
+            </div>
+            <div class="click-hint click-hint-close">
+              <span>✕</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-hint">
+          <span>→</span> Tap the circle to reveal more about me.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER PLACEHOLDER -->
+  <div id="site-footer"></div>
+
+  <!-- Data + JS -->
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
