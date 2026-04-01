@@ -1,4 +1,3 @@
-// data.js
 window.portfolioData = {
   name: "Kajal",
   title: "Web Developer",
@@ -23,7 +22,6 @@ window.portfolioData = {
   ],
 
   isOpenToRolesText: "Open to web dev roles",
-  // profilePhoto: "your-photo.jpg", // 👉 yahan apni photo file ka naam daalna
   navBrandText: "KAJAL • WEB DEVELOPER",
 
   projectsSub:
@@ -33,14 +31,12 @@ window.portfolioData = {
   contactSub:
     "Open to web developer roles, internships and freelance projects.",
 
-  // ✅ FIXED CONTACT DETAILS
   contact: {
     email: "Kajal097856kumari@gmail.com",
     github: {
       label: "github.com/kajal768",
       url: "https://github.com/kajal768"
     },
-    // ✅ live portfolio link: abhi local contact page (baad me live domain laga dena)
     portfolio: {
       label: "live portfolio link",
       url: "contact.html"
@@ -55,8 +51,8 @@ window.portfolioData = {
       desc:
         "A modern landing page with smooth hero animation, clean sections and mobile-friendly layout.",
       tech: "HTML • CSS • JS",
-      meta: "View soon →",
-      url: "projects.html" // ✅ placeholder # ki jagah internal page
+      meta: "Open project →",
+      url: "interactive-landing-page.html"
     },
     {
       title: "Auth UI & Dashboard",
@@ -64,8 +60,8 @@ window.portfolioData = {
       desc:
         "Login / register screens and basic dashboard layouts using PHP frameworks and reusable components.",
       tech: "PHP • CI / Laravel",
-      meta: "View soon →",
-      url: "projects.html"
+      meta: "Open project →",
+      url: "auth-ui-dashboard.html"
     },
     {
       title: "React UI Experiments",
@@ -73,8 +69,8 @@ window.portfolioData = {
       desc:
         "Small React components that consume JSON data and focus on clean, state-driven UI.",
       tech: "React • JS • JSON",
-      meta: "View soon →",
-      url: "projects.html"
+      meta: "Open project →",
+      url: "react-ui-experiments.html"
     }
   ],
 
@@ -116,7 +112,7 @@ window.portfolioData = {
       issuer: "XYZ Academy",
       year: "2024",
       summary: "Learned HTML, CSS, JavaScript and responsive UI fundamentals.",
-      link: "certificates.html" // ✅ placeholder # ki jagah internal page
+      link: "certificates.html"
     },
     {
       title: "PHP & MySQL for Web Apps",
