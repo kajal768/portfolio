@@ -160,3 +160,16 @@ function initHome() {
     });
   }
 }
+// 🔥 READ MORE TOGGLE (MOBILE)
+const aboutText = document.getElementById("heroAbout");
+const readMoreBtn = document.getElementById("readMoreBtn");
+
+readMoreBtn.addEventListener("click", () => {
+  aboutText.classList.toggle("expanded");
+
+  if (aboutText.classList.contains("expanded")) {
+    readMoreBtn.textContent = "Less";
+  } else {
+    readMoreBtn.textContent = "More";
+  }
+});

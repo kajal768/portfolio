@@ -1,26 +1,31 @@
 window.portfolioData = {
   name: "Kajal",
-  title: "Web Developer",
-  heroTagline: "Web Developer • PHP • React",
-  experienceLabel: "Web Developer • 3+ months experience",
-  heroTopText: "PORTFOLIO • WEB DEVELOPER",
-  location: "Based in: India",
-  status: "Currently: Working as Web Developer",
-  about:
-    "I’m a Web Developer with over 3 months of hands-on experience, currently working in a web development role. I work with HTML, CSS, JavaScript, PHP, SQL, React and modern PHP frameworks like CodeIgniter and Laravel to build clean, functional and responsive web applications.",
+title: "Web Developer",
 
-  heroSkills: [
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "PHP",
-    "SQL / MySQL",
-    "React",
-    "JSON",
-    "CodeIgniter",
-    "Laravel"
-  ],
+heroTagline: "Web Developer • PHP • React",
 
+experienceLabel: "Web Developer • 9+ months experience",
+
+heroTopText: "PORTFOLIO • WEB DEVELOPER",
+
+location: "Based in: India",
+
+status: "Currently: Working as Web Developer",
+
+about:
+  "I’m a Web Developer with over 9 months of hands-on experience, currently working in a professional web development role. I specialize in building clean, responsive, and user-friendly web applications using HTML, CSS, JavaScript, PHP, SQL, and React. I also work with modern PHP frameworks like CodeIgniter and Laravel to develop scalable and efficient backend solutions. I’m continuously improving my skills and focused on writing optimized, maintainable code.",
+
+heroSkills: [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "PHP",
+  "SQL / MySQL",
+  "React",
+  "JSON",
+  "CodeIgniter",
+  "Laravel"
+],
   isOpenToRolesText: "Open to web dev roles",
   navBrandText: "KAJAL • WEB DEVELOPER",
 
@@ -130,3 +135,4 @@ window.portfolioData = {
     }
   ]
 };
+

@@ -1434,3 +1434,132 @@ footer {
   font-weight: 600;
   text-decoration: none;
 }
+
+/* ================= 🔥 PREMIUM MOBILE HERO FIX ================= */
+@media (max-width: 600px) {
+
+  /* 🔥 Hide background name text */
+  .circle-name,
+  .name-tagline {
+    display: none !important;
+  }
+
+  /* Card full width */
+  .resume-card.open {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 20px;
+    padding: 18px 12px;
+  }
+
+  /* Clean spacing */
+  .resume-inner {
+    padding: 120px 12px 10px 12px;
+    text-align: center;
+  }
+
+  /* 🔥 Profile Image Perfect Center */
+  .resume-card.open .photo-wrap {
+    left: 50%;
+    top: 80px;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+    box-shadow: 
+      0 10px 25px rgba(0,0,0,0.6),
+      0 0 25px rgba(99,102,241,0.5);
+  }
+
+  /* Text center */
+  .details {
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  /* Heading */
+  .details h2 {
+    font-size: 1.25rem;
+    margin-top: 8px;
+  }
+
+  /* Role text */
+  .details .role {
+    font-size: 0.85rem;
+  }
+
+  /* About text */
+  .details .about {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    max-width: 100%;
+  }
+
+  /* Chips center */
+  .details-row {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  /* Skills center */
+  .skills-inline {
+    justify-content: center;
+  }
+
+  .skill-pill {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+
+  /* Hint text */
+  .hint-text {
+    text-align: center;
+    font-size: 0.7rem;
+  }
+
+  /* Close button fix */
+  .click-hint {
+    right: 8px;
+    bottom: 6px;
+    font-size: 0.7rem;
+  }
+
+  /* 🔥 Extra smooth look */
+  .resume-card {
+    transition: all 0.4s ease;
+  }
+
+}
+
+/* 🔥 READ MORE MOBILE FEATURE */
+.read-more-btn {
+  display: none;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: rgba(15, 23, 42, 0.6);
+  color: #38bdf8;
+  cursor: pointer;
+}
+
+/* MOBILE LOGIC */
+@media (max-width: 600px) {
+
+  .about {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;  /* 👈 only 3 lines show */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .about.expanded {
+    -webkit-line-clamp: unset;
+  }
+
+  .read-more-btn {
+    display: inline-block;
+  }
+
+}
